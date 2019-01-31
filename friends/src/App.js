@@ -12,7 +12,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {this.props.friends.length > 0 ?  <Friends friends={this.props.friends} />:<Spinner />}
+        {this.props.friends.length > 0 ?  <Friends delete={this.props.onDelete} friends={this.props.friends} />:<Spinner />}
       </div>
     );
   }
@@ -25,7 +25,8 @@ const mapStateToProps = state => {
 }
 const mapDispatchToProps = dispatch => {
   return {
-    onInitFriends: () => dispatch(actions.initFriends())
+    onInitFriends: () => dispatch(actions.initFriends()),
+    onDelete: (id) => dispatch(actions.deleteFriend(id)),
   }
 }
 

@@ -41,7 +41,26 @@ export default (state = initialState, action) => {
                 ...state,
                 fetchingFriends: false,
                 friendsFetched: false,
-                error: 'Failed to fetch Friends, PepeHands'
+                error: 'Failed to fetch Friends.'
+            }
+        case actionTypes.DELETING_FRIEND:
+            return {
+                ...state,
+                delete: { deletingFriend: true, friendDeleted: false},
+                error: null
+            }
+        case actionTypes.DELETE_SUCCEEDED:
+            return {
+                ...state,
+                friends: action.friends,
+                delete: {deletingFriend: false, friendDeleted: true},
+                error: null
+            }
+        case actionTypes.DELETE_FAILED:
+            return {
+                ...state,
+                delete: {deletingFriend: false, friendDeleted: false},
+                error: "Could not delete friend."
             }
         default:
             return state;
