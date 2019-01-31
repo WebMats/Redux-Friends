@@ -62,6 +62,44 @@ export default (state = initialState, action) => {
                 delete: {deletingFriend: false, friendDeleted: false},
                 error: "Could not delete friend."
             }
+        case actionTypes.UPDATING_FRIEND:
+            return {
+                ...state,
+                update: {updatingFriend: true, friendUpdated: false},
+                error: null
+            }            
+        case actionTypes.UPDATE_SUCCEEDED:
+            return {
+                ...state,
+                friends: action.friends,
+                update: {updatingFriend: false, friendUpdated: true},
+                error: null
+            }            
+        case actionTypes.UPDATE_FAILED:
+            return {
+                ...state,
+                update: {updatingFriend: false, friendUpdated: false},
+                error: "Could not update friend."
+            }            
+        case actionTypes.ADDING_FRIEND:
+            return {
+                ...state,
+                saving: {savingFriends: true, friendsSaved: false},
+                error: null
+            }            
+        case actionTypes.ADD_SUCCEEDED:
+            return {
+                ...state,
+                friends: action.friends,
+                saving: {savingFriends: false, friendsSaved: true},
+                error: null
+            }      
+        case actionTypes.ADD_FAILED:
+            return {
+                ...state,
+                saving: {savingFriends: false, friendsSaved: false},
+                error: "Could not add friend."
+            }   
         default:
             return state;
     }
