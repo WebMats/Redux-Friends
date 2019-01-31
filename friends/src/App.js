@@ -1,13 +1,32 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import Spinner from './components/UI/Spinner';
+import Friends from './components/Friends';
+import * as actions from './store/actions'
 import './App.css';
 
 class App extends Component {
+  componentDidMount() {
+    this.props.onInitFriends()
+  }
   render() {
     return (
       <div className="App">
+        {this.props.friends.length > 0 ?  <Friends friends={this.props.friends} />:<Spinner />}
       </div>
     );
   }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    friends: state.friends
+  }
+}
+const mapDispatchToProps = dispatch => {
+  return {
+    onInitFriends: () => dispatch(actions.initFriends())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
