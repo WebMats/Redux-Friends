@@ -1,0 +1,64 @@
+.FriendsContainer {
+    background-color: white;
+    max-width: 400px;
+    width: 90%;
+    margin: 2rem auto;
+    padding: 2rem;
+}
+.FriendsContainer > h1 {
+    font-size: 2.6rem;
+    margin-bottom: 1rem;
+}
+.FriendsContainer > p {
+    font-size: 1.6rem;
+    border-bottom: 3px solid rgb(28, 101, 160);
+    padding: 5px;
+    max-width: 200px;
+    margin: 5px auto;
+    border-radius: 3px;
+    position: relative;
+}
+.delete__button {
+    background-color: darkred;
+    color: white;
+    font-size: 1.4rem;
+    position: absolute;
+    top: 4px;
+    height: 18px;
+    width: 18px;
+    border-radius: 50%;
+    right: 4px;
+    padding: 2px 1px 1px 2px;
+}
+.delete__button:hover {
+    background-color: rgb(233, 214, 214);
+    color: darkred;
+    cursor: pointer;
+    transition-duration: .6s;
+}
+.PickFriendToUpdateButton, .CancelPickButton {
+    z-index: 2;
+    position: absolute;
+    left: 7px;
+    font-size: 1rem;
+    padding: 3px;
+    text-transform: lowercase;
+    border-radius: 5px;
+    color: white;
+}
+.PickFriendToUpdateButton {
+    border: 1px solid rgb(40, 197, 79);
+    background-color: rgb(40, 197, 79);
+}
+.CancelPickButton {
+    border: 1px solid rgb(196, 67, 67);
+    background-color: rgb(196, 67, 67);
+}
+.PickFriendToUpdateButton:hover {
+    background-color: rgb(30, 150, 60);
+    cursor: pointer;
+} 
+.CancelPickButton:hover {
+    background-color: rgb(150, 50, 50);
+    cursor: pointer;
+} 
