@@ -18,7 +18,8 @@ export const initialState = {
         updatingFriend: false,
         friendUpdated: false,
     },
-    error: null
+    error: null,
+    idToUpdate: null
 }
 
 export const reducer = (state = initialState, action) => {
@@ -62,6 +63,15 @@ export const reducer = (state = initialState, action) => {
                 delete: {deletingFriend: false, friendDeleted: false},
                 error: "Could not delete friend."
             }
+        case actionTypes.UPDATE_ID:
+            let newId = action.id
+            if (state.idToUpdate === newId) {
+                newId = null
+            }
+            return {
+                ...state,
+                idToUpdate: newId
+            }
         case actionTypes.UPDATING_FRIEND:
             return {
                 ...state,
@@ -73,7 +83,8 @@ export const reducer = (state = initialState, action) => {
                 ...state,
                 friends: action.friends,
                 update: {updatingFriend: false, friendUpdated: true},
-                error: null
+                error: null,
+                idToUpdate: null
             }            
         case actionTypes.UPDATE_FAILED:
             return {

@@ -13,7 +13,8 @@ export const actionTypes = {
     ADD_FAILED: "ADD_FAILED",
     UPDATING_FRIEND: "UPDATING_FRIEND",
     UPDATE_SUCCEEDED: "UPDATE_SUCCEEDED",
-    UPDATE_FAILED: "UPDATE_FAILED"
+    UPDATE_FAILED: "UPDATE_FAILED",
+    UPDATE_ID: "UPDATE_ID"
 }
 // INITIALIZE FRIENDS
 const fetchingFriends = () => {
@@ -118,4 +119,11 @@ export const updateFriend = (id, updates) => dispatch => {
         console.error(err)
         dispatch(updateFailed())
     })
+}
+// UPDATE ID OF FRIEND WE ARE LOOKING TO UPDATE
+export const updateId = (id) => {
+    return {
+        type: actionTypes.UPDATE_ID,
+        id: id
+    }
 }

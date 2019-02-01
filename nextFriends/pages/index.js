@@ -3,34 +3,25 @@ import Link from 'next/link';
 import { connect } from 'react-redux';
 import Spinner from '../components/UI/Spinner/Spinner';
 import Friends from '../components/Friends';
-// import FriendForm from './components/FriendForm';
+import Router from 'next/router';
 import * as actions from '../store/actions';
 import '../styles/App.css';
 
 class App extends Component {
-  state = {
-    idToUpdate: null
-  }
-
   componentDidMount() {
     this.props.onInitFriends()
   }
 
   updateStateHandler = (id) => {
-    this.setState(prevState => {
-      if (prevState.idToUpdate === id) {
-        return {idToUpdate: null}
-      }
-      return {idToUpdate: id}
-    })
+    
   }
 
   render() {
     return (
       <div className="App">
-        {this.props.friends.length > 0 ?  <Friends toggleUpdate={this.updateStateHandler} updateID={this.state.idToUpdate} delete={this.props.onDelete} friends={this.props.friends} />:<Spinner />}
+        {this.props.friends.length > 0 ?  <Friends toggleUpdate={this.props.onUpdateId} updateID={this.props.idToUpdate} delete={this.props.onDelete} friends={this.props.friends} />:<Spinner />}
         {/* <FriendForm resetId={() => {this.setState({idToUpdate: null})}} updateId={this.state.idToUpdate} /> */}
-        <Link href='add-friend'><a>Add Friend</a></Link>
+        <Link href='add-friend'><button className="NavButton" onClick={() => {Router.push('/add-friend')}}>Add Friend</button></Link>
       </div>
     );
   }
@@ -38,13 +29,15 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return {
-    friends: state.friends
+    friends: state.friends,
+    idToUpdate: state.idToUpdate
   }
 }
 const mapDispatchToProps = dispatch => {
   return {
     onInitFriends: () => dispatch(actions.initFriends()),
     onDelete: (id) => dispatch(actions.deleteFriend(id)),
+    onUpdateId: (id) => dispatch(actions.updateId(id))
   }
 }
 

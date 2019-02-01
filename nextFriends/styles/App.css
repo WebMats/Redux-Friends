@@ -93,6 +93,14 @@ html {
   .App-link {
     color: #61dafb;
   }
+  .NavButton {
+    background-color: rgb(69, 230, 216);
+    color:white;
+    height: 3rem;
+    font-size: 1.6rem;
+    border-radius: 6px;
+    width: 24rem;
+  }
   
   @keyframes App-logo-spin {
     from {
